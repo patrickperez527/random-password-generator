@@ -25,12 +25,12 @@ generateEl.addEventListener('click', () => {
   const hasLower = lowercaseEl.checked;
   const hasNumber = numbersEl.checked;
   const hasSymbol = symbolsEl.checked;  
-  resultEl.innerText = generatePassword(length, hasUpper, hasLower, hasNumber, hasSymbol);
+  resultEl.value = generatePassword(length, hasUpper, hasLower, hasNumber, hasSymbol);
 });
 
 clipboardEl.addEventListener('click', () => {
   const textarea = document.createElement('textarea');
-  const password = resultEl.innerText;
+  const password = resultEl.value;
 
   if(!password){
     message.innerHTML = '<span class="text-danger">Please generate a password first.</span>';
@@ -73,7 +73,6 @@ function generatePassword(length, upper, lower, number, symbol){
   }
   const finalPassword = generatedPassword.slice(0, length);
   return finalPassword;
-
 }
 
 function getRandomUpper(){
@@ -89,6 +88,6 @@ function getRandomNumber(){
 }
 
 function getRandomSymbol(){
-  const symbols = '!@#$%^&*(){}[]=<>/,.';
+  const symbols = '!@#$%^&*()_+{}:"|<>?/.,;[]=-`';
   return symbols[Math.floor(Math.random() * symbols.length)];
 }
